@@ -1,0 +1,72 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		
+		<div class="container">
+			<div th:replace="~{base :: titulo('Dados do Leilao')}"></div>
+			
+			<div class="alert alert-primary" role="alert" th:if="${message}">
+			  <span th:text="${message}"></span>
+			</div>
+
+			<div class="alert alert-danger" role="alert" th:if="${error}">
+			  <span th:text="${error}"></span>
+			</div>
+				
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title" th:text="${leilao.nome}">Nome</h5>
+			    <h6 class="card-subtitle mb-1 text-muted">
+			     <span th:if="${leilao.valorInicial} != null" th:text="${'R$ ' + #numbers.formatDecimal(leilao.valorInicial, 1,'POINT',2,'COMMA')}">
+			     200,99
+			     </span>
+			    </h6>
+			    <p class="card-text" th:text="${leilao.usuario.nome} + ', ' + ${#temporals.format(leilao.dataAbertura, 'dd/MM/yyyy')}">Usuario e Data abertura</p>
+			  </div>
+			</div>
+			
+			<div class="card mt-2">
+				<form class="card-body" th:action="@{/lances}" method="post" th:object="${lance}">
+					<div class="input-group">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="">Novo Lance:</span>
+					  </div>
+						<input type="text" th:field="*{valor}" class="form-control" placeholder="valor" 
+								th:classappend="${#fields.hasErrors('valor')} ? is-invalid : valid" autofocus="autofocus"/>
+						<button class="btn btn-outline-primary" type="submit" id="btnDarLance">Dar lance!</button>
+						<div class="invalid-feedback" th:errors="*{valor}" >
+					        Por favor insira um valor válido.
+					    </div>
+					</div>
+				<div><input type="hidden" th:value="${leilao.id}" id="leilaoId" name="leilaoId"/></div>
+					  
+				</form>
+			</div>	
+			
+			<div class="card mt-2" th:if="${!leilao.lances.empty}">
+			  <div class="card-body">
+					<h5 class="card-title">Lances dados</h5>
+					<table id="lancesDados" class="table">
+						<tr bgcolor="#efefef">
+							<td>Data</td>
+							<td>Usuário</td>
+							<td>Valor</td>
+						</tr>
+						 
+						<tr th:each="lance : ${leilao.lances}">
+							<td scope="row" th:text="${#temporals.format(lance.data, 'dd/MM/yyyy')}">Data</td>
+							<td th:text="${lance.usuario.nome}">Nome do Usuario</td>
+							<td th:text="${'R$ ' + #numbers.formatDecimal(lance.valor, 1,'POINT',2,'COMMA')}">Valor</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<a class="btn btn-primary mt-2" th:href="@{'/leiloes'}" role="button">Voltar</a>
+			
+		</div>
+	
+	
+
+</body>

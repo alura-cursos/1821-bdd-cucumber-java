@@ -1,0 +1,41 @@
+version: '3.7'
+
+#para roder os services abaixo
+#docker-compose up -d
+
+#para terminar os services abaixo
+#docker-compose down 
+
+services:
+          
+  #spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+  db:
+    image: mariadb:10.3
+    container_name: leiloes_mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: leiloes
+      MYSQL_USER: root
+      MYSQL_PASSWORD: pass  
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
+    container_name: leiloes_adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - backend
+
+networks:     
+  backend:
+    driver: bridge
+    name: leiloes_network
+    

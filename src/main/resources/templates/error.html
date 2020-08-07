@@ -1,0 +1,11 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container">
+	        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+	        <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+	        <a href="index.html" th:href="@{/leiloes}">Voltar</a>
+        </div>
+    </body>
+</html>

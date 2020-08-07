@@ -1,0 +1,40 @@
+<head th:fragment="head" >
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<style>
+		/* latin */
+		@font-face {
+		  font-family: 'Handlee';
+		  font-style: normal;
+		  font-weight: 400;
+		  font-display: swap;
+		  src: local('Handlee Regular'), local('Handlee-Regular'), url(https://fonts.gstatic.com/s/handlee/v8/-F6xfjBsISg9aMakPm3wow.woff2) format('woff2');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+		}
+	
+	
+		.logo-container {
+			background-color: #47bcff;
+			color:#FFF;
+		}
+		
+		.logo {
+			font-family: 'Handlee', cursive;
+			font-size: 2.5rem;
+		}
+	</style>
+</head>
+
+<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
+	<span class="logo ml-2">leilão</span>
+	<span class="mt-3 mr-2">
+		<span sec:authorize="isAuthenticated()" sec:authentication="name" class="font-italic"></span>	
+		<a class="text-light" sec:authorize="!isAuthenticated()" href="/login">Entrar</a>
+		<a onclick="document.querySelector('#form-login').submit()" class="text-light ml-3" sec:authorize="isAuthenticated()" href="#">Sair</a>
+		<form id="form-login" th:action="@{/logout}" method="post"></form>
+	</span>
+</div>
+
+<div th:fragment="titulo(valor)" class="jumbotron p-3 mb-3">
+	<h1 class="display-7" th:text="${valor}"></h1>
+</div>

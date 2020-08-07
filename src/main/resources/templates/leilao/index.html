@@ -1,0 +1,44 @@
+<html>
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		
+	<div class="container">
+		<div th:replace="~{base :: titulo('Todos leilões')}"></div>
+		
+		<div class="alert alert-primary" role="alert" th:if="${message}">
+			  <span th:text="${message}"></span>
+		</div>
+
+	<table class="table table-hover">
+		<tr>
+			<th scope="col">Nome</th>
+			<th scope="col">Data de abertura</th>
+			<th scope="col">Valor inicial</th>
+			<th scope="col">Usuario</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+		</tr>
+			<tr th:each="leilao : ${leiloes}" >
+				<td scope="row" th:text="${leilao.nome}">Nome</td>
+				<td th:text="${#temporals.format(leilao.dataAbertura, 'dd/MM/yyyy')}">10/02/2020</td>
+				<td th:text="${leilao.valorInicial}">Valor Inicial</td>
+				<td th:text="${leilao.usuario.nome}">Nome do Usuario</td>
+				<td sec:authorize="isAuthenticated()" th:if="${leilao.usuario.nome != usuarioLogado.name}">
+					<a class="btn btn-block btn-info" th:href="@{'/leiloes/' + ${leilao.id}}" >dar lance</a>
+				</td>
+				<td sec:authorize="isAuthenticated()" th:if="${leilao.usuario.nome == usuarioLogado.name} ">
+					<a class="btn btn-block btn-primary m-0" th:href="@{'/leiloes/' + ${leilao.id}} + '/form'">editar</a>
+				</td>
+			</tr>
+
+	</table>
+
+	<br />
+	
+	<a class="btn btn-primary" id="novo_leilao_link" th:href="@{'/leiloes/new'}" role="button" sec:authorize="isAuthenticated()">Novo Leilão</a>
+	
+	</div>
+</body>

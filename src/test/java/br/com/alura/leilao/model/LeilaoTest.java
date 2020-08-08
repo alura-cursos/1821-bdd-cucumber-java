@@ -4,13 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LeilaoTest {
 	
-	
-	@DisplayName("um usuario pode dar lance em um leilao de outro usuario")
 	@Test
     public void deveReceberUmLance() {
         Leilao leilao = new Leilao("Macbook Pro 15");
@@ -22,7 +19,6 @@ public class LeilaoTest {
         assertEquals(1, leilao.getLances().size());
         assertEquals(doisMil, leilao.getLances().get(0).getValor());
     }
-	
 	
 	@Test
     public void naoDeveAceitarUmLanceIgualAoAnterior() {
@@ -53,8 +49,6 @@ public class LeilaoTest {
         assertEquals(doisMil, leilao.getLances().get(0).getValor());
     }
 	
-
-	@DisplayName("um leilao pode receber lances de usuários diferentes")
     @Test
     public void deveReceberVariosLances() {
     	

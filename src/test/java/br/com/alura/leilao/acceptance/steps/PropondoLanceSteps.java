@@ -3,6 +3,7 @@ package br.com.alura.leilao.acceptance.steps;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import org.apache.bcel.generic.LNEG;
 import org.junit.Assert;
 
 import br.com.alura.leilao.model.Lance;
@@ -30,7 +31,7 @@ public class PropondoLanceSteps {
 	
 	@After
 	public void tearDown() {
-		System.out.println("after");
+//		System.out.println("after");
 	}
 	
 	
@@ -77,8 +78,20 @@ public class PropondoLanceSteps {
 		Assert.assertEquals(this.lista.size(), leilao.getLances().size());
 		Assert.assertEquals(this.lista.get(0).getValor(), leilao.getLances().get(0).getValor());
 		Assert.assertEquals(this.lista.get(1).getValor(), leilao.getLances().get(1).getValor());
-
 	}
+
+	
+	@Dado("um lance invalido de {double} reais e do usuario {string}")
+	public void um_lance_de_reais(Double valor, String nomeUsuario) {
+		System.out.println(nomeUsuario);
+		this.lance = new Lance(new BigDecimal(valor));
+	}
+	
+	@Entao("o lance nao eh aceito")
+	public void o_lance_nao_eh_aceito() {
+		Assert.assertEquals(0, leilao.getLances().size());
+	}
+	
 	
 }
 

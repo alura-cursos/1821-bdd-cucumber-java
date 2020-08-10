@@ -52,7 +52,7 @@ public class LanceServiceTest {
         }
     }
 
-	@BeforeEach
+	@BeforeEach //@Before
 	public void setUp() {
 		long leilaoId = 1l;
 		lanceDto = new NovoLanceDto();

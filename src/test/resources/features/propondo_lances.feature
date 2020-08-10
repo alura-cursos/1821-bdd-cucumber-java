@@ -32,6 +32,3 @@ Cenario: Propondo uma sequencia de lances
  Quando propoe varios lances ao leilao
  Entao o segundo lance nao eh aceito
     
-    
-    
-    

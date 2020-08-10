@@ -12,7 +12,7 @@ public class BrowserFactory {
 //	https://github.com/mozilla/geckodriver/releases	
 
 	public WebDriver createWebDriver() {
-		String webdriver = System.getProperty("browser", "htmlunit");
+		String webdriver = System.getProperty("browser", "firefox"); //VM Argument: -Dbrowser=firefox
 		switch (webdriver) {
 			case "firefox":
 				return initFirefoxDriver();

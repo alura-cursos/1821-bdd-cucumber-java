@@ -21,9 +21,11 @@ public class LeiloesPage {
 		driver.get(PAGE_URL);
 	}
 
-	public boolean existe(String nomeProduto, String valor, String usuario) {
-		return driver.getCurrentUrl().endsWith("/leiloes") && driver.getPageSource().contains(nomeProduto) && 
-				driver.getPageSource().contains(valor);
+	public boolean existe(String nome, String valor, String data, String usuario) {
+		return driver.getPageSource().contains(nome) && 
+				driver.getPageSource().contains(valor) &&
+				driver.getPageSource().contains(data) &&
+				driver.getPageSource().contains(usuario);
 	}
 	
 	public boolean estaNaPaginaDeLeiloes() {

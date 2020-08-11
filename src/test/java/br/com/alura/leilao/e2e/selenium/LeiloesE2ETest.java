@@ -31,7 +31,7 @@ public class LeiloesE2ETest extends E2ETestBase{
 		
 		leiloesPage.esperaCarregar();
 
-		assertTrue(leiloesPage.existe(nome, valor, data));
+		assertTrue(leiloesPage.existe(nome, valor, data, "fulano"));
 	}
 	
 	
@@ -46,7 +46,7 @@ public class LeiloesE2ETest extends E2ETestBase{
 		
 		leiloesPage.esperaCarregar();
 
-		assertTrue(leiloesPage.existe(nome, valor, data));
+		assertTrue(leiloesPage.existe(nome, valor, data, "fulano"));
 	}
 	
 }

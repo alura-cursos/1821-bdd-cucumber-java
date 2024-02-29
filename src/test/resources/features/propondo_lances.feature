@@ -1,6 +1,7 @@
-Feature: Propondo lances
+#language: pt
+Funcionalidade: Propondo lances
 
-  Scenario: Propondo um unico lance valido
-    Given Dado um lance valido
-    When Quando propoe o lance
-    Then Entao o lance eh aceito
+  Cenario: Propondo um único lance válido
+    Dado que tenho um lance válido
+    Quando propõe o lance para o produto do leilão
+    Entao o lance é aceito
